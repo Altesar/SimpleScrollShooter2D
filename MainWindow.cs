@@ -6,8 +6,11 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using ScrollShooter2D.game_entities;
 using ScrollShooter2D.managers;
-using ScrollShooter2D.render;
-using ScrollShooter2D.render.primitives_2d;
+//using ScrollShooter2D.render;
+//using ScrollShooter2D.render.primitives_2d;
+
+using ScrollShooter2D.engine.graphics;
+using ScrollShooter2D.engine.graphics.primitives_2d;
 
 namespace ScrollShooter2D
 {
@@ -18,8 +21,11 @@ namespace ScrollShooter2D
         private Vector2 mousePos;
         
         private int glProgram;
-        private Camera2D cam;
-       
+        //private Camera2D cam;
+        private OrthographicCamera camera;
+
+        Rectangle testRect;
+
         public MainWindow() : base(480, 640, GraphicsMode.Default, "Space Shooter")
         { }
 
@@ -29,18 +35,18 @@ namespace ScrollShooter2D
 
             glProgram = ShaderLoader.LoadProgram(new List<ShaderSrc>
             {
-                new ShaderSrc(ShaderType.FragmentShader, "shaders/fragment.glsl"),
-                new ShaderSrc(ShaderType.VertexShader, "shaders/vertex.glsl")
+                new ShaderSrc(ShaderType.FragmentShader, "engine/graphics/shaders/fragment.glsl"),
+                new ShaderSrc(ShaderType.VertexShader, "engine/graphics/shaders/vertex.glsl")
             });
             
             GL.UseProgram(glProgram);
             GL.ClearColor(Color4.Black);
 
-            cam = new Camera2D(480, 640);
-            renderer = new Renderer(glProgram, cam);
-            GameManager.Instance.Renderer = renderer;
+            //cam = new Camera2D(480, 640);
+            //renderer = new Renderer(glProgram, cam);
+            //GameManager.Instance.Renderer = renderer;
 
-            #region Display objects instantiation
+            #region Old display objects instantiation
             
             Player player = new Player(40, 50, 10, 0);
             player.SetColor(Color4.LimeGreen);
@@ -55,7 +61,19 @@ namespace ScrollShooter2D
 
             #endregion
 
-            GameManager.Instance.Start();
+            #region New render system test
+
+            camera = new OrthographicCamera(480, 640);
+            renderer = new Renderer(glProgram, camera);
+
+            testRect = new Rectangle(300, 300, Color4.Aqua);
+            testRect.Transform.Position = new Vector3(50, 150, -1);
+            testRect.Visible = true;
+            renderer.StageDraw(testRect);
+
+            #endregion
+
+            //GameManager.Instance.Start();
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -66,13 +84,14 @@ namespace ScrollShooter2D
 
             handleGlobalInput();
 
-            GameManager.Instance.Update((float)e.Time);
+            //GameManager.Instance.Update((float)e.Time);
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
         {
             base.OnRenderFrame(e);
-            
+
+            renderer.StageDraw(testRect);
             renderer.Draw();
             
             SwapBuffers();
@@ -83,12 +102,15 @@ namespace ScrollShooter2D
             base.OnResize(e);
             
             GL.Viewport(0, 0, Width, Height);
-            cam.Resolution = new Vector2( Width, Height);
+            //TODO: update resolution
+            //camera.Resolution = new Vector2( Width, Height);
         }
 
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
+            
+            testRect.Destroy();
             
             GL.DeleteProgram(glProgram);
 

@@ -31,7 +31,7 @@ namespace ScrollShooter2D.game_entities
         
         public Character(float width, float height) : base(width, height, Color4.White)
         {
-            ColliderBox = new ColliderBox(new Vector2(width, height), new Vector2(position), true);
+            ColliderBox = new ColliderBox(new Vector2(width, height), new Vector2(position.X, position.Y), true);
         }
 
         public abstract void FireWeapon();
@@ -49,14 +49,14 @@ namespace ScrollShooter2D.game_entities
         public override void MoveTo(float x, float y)
         {
             position = new Vector3(x, y, position.Y);
-            ColliderBox.Position = new Vector2(position);
+            ColliderBox.Position = new Vector2(position.X, position.Y);
             UpdateModelMatrix();
         }
 
         public override void Move(float deltaX, float deltaY)
         {
             position += new Vector3(deltaX, deltaY, 0);
-            ColliderBox.Position = new Vector2(position);
+            ColliderBox.Position = new Vector2(position.X, position.Y);
             UpdateModelMatrix();
         }
     }

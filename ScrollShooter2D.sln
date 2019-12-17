@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrollShooter2D", "ScrollShooter2D.csproj", "{4C6161A0-8C21-4F5B-A82C-151946A2B2B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C6161A0-8C21-4F5B-A82C-151946A2B2B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C6161A0-8C21-4F5B-A82C-151946A2B2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C6161A0-8C21-4F5B-A82C-151946A2B2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C6161A0-8C21-4F5B-A82C-151946A2B2B8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BFD2650A-B284-4BE6-9D06-DF67F69F68CC}
+	EndGlobalSection
+EndGlobal

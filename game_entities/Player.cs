@@ -76,7 +76,7 @@ namespace ScrollShooter2D.game_entities
                 FireWeapon();
 
             position += new Vector3(velocity) * deltaTime;
-            ColliderBox.Position = new Vector2(position);
+            ColliderBox.Position = new Vector2(position.X, position.Y);
 
             UpdateModelMatrix();
         }

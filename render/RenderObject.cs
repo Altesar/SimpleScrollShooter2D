@@ -6,12 +6,13 @@ using OpenTK.Graphics.OpenGL;
 
 namespace ScrollShooter2D.render
 {
+
     public struct Vertex
     {
         public Vector4 Position;
         public Color4 Color;
-        
-        public static readonly int Size = 4*2*sizeof(float);
+
+        public static readonly int Size = 4 * 2 * sizeof(float);
 
         public Vertex(Vector4 position, Color4 color)
         {

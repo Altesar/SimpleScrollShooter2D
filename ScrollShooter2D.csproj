@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OpenTK, Version=3.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
-      <HintPath>..\packages\OpenTK.3.0.0-pre\lib\net20\OpenTK.dll</HintPath>
+    <Reference Include="OpenTK, Version=3.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>packages\OpenTK.3.1.0\lib\net20\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,11 +43,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="engine\graphics\Camera.cs" />
+    <Compile Include="engine\graphics\OrthographicCamera.cs" />
+    <Compile Include="engine\graphics\util\attributes\GlUniformProperty.cs" />
+    <Compile Include="engine\graphics\util\attributes\GlVertexAttrib.cs" />
+    <Compile Include="engine\graphics\util\GlBufferObject.cs" />
+    <Compile Include="engine\graphics\util\GlElementBuffer.cs" />
+    <Compile Include="engine\graphics\util\GlProgram.cs" />
+    <Compile Include="engine\graphics\util\GlTransform.cs" />
+    <Compile Include="engine\graphics\util\GlVertexBuffer.cs" />
+    <Compile Include="engine\graphics\Mesh.cs" />
     <Compile Include="game_entities\Bullet.cs" />
     <Compile Include="game_entities\Character.cs" />
     <Compile Include="game_entities\Enemy.cs" />
     <Compile Include="game_entities\Player.cs" />
     <Compile Include="game_entities\Projectile.cs" />
+    <Compile Include="engine\graphics\primitives_2d\Rectangle.cs" />
+    <Compile Include="engine\graphics\Renderer.cs" />
+    <Compile Include="engine\graphics\ShaderLoader.cs" />
+    <Compile Include="engine\graphics\util\Vertex.cs" />
     <Compile Include="MainWindow.cs" />
     <Compile Include="managers\EntityManager.cs" />
     <Compile Include="managers\GameManager.cs" />
@@ -64,20 +78,23 @@
     <Compile Include="util\ICollidable.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="shaders\fragment.glsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="shaders\vertex.glsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="shaders\fragment.glsl" />
+    <None Include="shaders\vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="engine\graphics\shaders\vertex.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="engine\graphics\shaders\fragment.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\" />
+    <Folder Include="engine\util\attributes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

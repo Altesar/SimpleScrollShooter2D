@@ -29,7 +29,7 @@ namespace ScrollShooter2D.game_entities
             this.damage = damage;
             this.range = range;
             Velocity = Vector2.Zero;
-            ColliderBox = new ColliderBox(new Vector2(width, height), new Vector2(position), true);
+            ColliderBox = new ColliderBox(new Vector2(width, height), new Vector2(position.X, position.Y), true);
 
             if (!(parentType == null))
             {
